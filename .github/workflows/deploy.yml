@@ -1,13 +1,11 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 同步上游数据
+name: Deploy
 
 on:
-#   push:  # 推送事件
-#     branches: [ "main" ] 
-#   schedule:
-#     - cron:  '*/15 * * * *'  # 定时调度
+  schedule:
+    - cron:  '*/15 * * * *'  # 定时调度
   workflow_dispatch:  # Action ui 界面可触发 下面可描述参数
 
 
