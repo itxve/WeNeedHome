@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "ts-node-esm script/fetchUpstream.ts",
+    "fetchUpstream": "ts-node-esm script/fetchUpstream.ts",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
