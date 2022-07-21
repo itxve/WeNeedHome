@@ -20,7 +20,7 @@ const flatAddress = computed(() => {
 
 <template>
   <div class="content">
-    <h2>数据搜素</h2>
+    <h2>数据搜索</h2>
     <div class="search">
       <b>总计: {{ FlatData.length }}</b>
       <input v-model="searchText" placeholder="输入省/市/楼盘进行过滤" />
