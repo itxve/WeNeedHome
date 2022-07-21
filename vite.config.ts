@@ -12,7 +12,9 @@ function virtualEsm() {
     },
     load(id) {
       if (id === virtualModuleId) {
-        return `export default "${new Date().toLocaleString()}"`;
+        return `export default "${new Date().toLocaleString("zh-CN", {
+          timeZone: "Asia/Shanghai",
+        })}"`;
       }
     },
   };
