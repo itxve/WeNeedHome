@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Search from "./components/Search.vue";
+import time from "lastUpdateTime";
 </script>
 
 <template>
@@ -8,11 +9,16 @@ import Search from "./components/Search.vue";
   </main>
 
   <footer>
-    数据来源：<a
-      href="https://github.com/WeNeedHome/SummaryOfLoanSuspension/blob/main/data/generated/properties-flat.json"
-      target="_blank"
-      >WeNeedHome/SummaryOfLoanSuspension</a
-    >
+    <div>
+      数据来源：<a
+        href="https://github.com/WeNeedHome/SummaryOfLoanSuspension/blob/main/data/generated/properties-flat.json"
+        target="_blank"
+        >WeNeedHome/SummaryOfLoanSuspension</a
+      >
+    </div>
+    <div style="margin-top: 5px">
+      上次同步时间 <a>{{ time }}</a>
+    </div>
   </footer>
 </template>
 
