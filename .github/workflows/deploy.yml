@@ -4,15 +4,15 @@
 name: Deploy
 
 on:
+  push:
+    branches: [ "main" ]
   schedule:
-    - cron:  '*/15 * * * *'  # 定时调度
+    - cron:  '*/30 * * * *'  # 定时调度
   workflow_dispatch:  # Action ui 界面可触发 下面可描述参数
 
 
-
-
 jobs:
-  update-file:
+  deploy-site:
     runs-on: ["ubuntu-latest"]
     permissions:
       contents: write
@@ -32,9 +32,10 @@ jobs:
           path: './node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('./pnpm-lock.yaml') }}
 
-      - name: ( 3/4 ) run script
+      - name: ( 3/4 ) build web site
         run: cd src && npm i -g pnpm && pnpm i && pnpm fetchUpstream && pnpm build
-      - name: ( 4/4 ) Deploy gh-pages
+      
+      - name: ( 4/4 ) deploy web site
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.Token }}
