@@ -76,7 +76,7 @@ const flatAddress = computed(() => {
     width: 75vw;
   }
   .item-list {
-    height: 90vh;
+    height: 60vh;
   }
 }
 </style>
