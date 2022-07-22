@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import viteIcon from "../../public/vite.svg";
 import { FlatData } from "../data";
 import Item from "./Item.vue";
 const searchText = ref("");
 
 const flatAddress = computed(() => {
   if (!searchText.value) {
-    return FlatData.slice(0, 100);
+    return FlatData;
   }
   return FlatData.filter(({ city, province, name }) => {
     return (
@@ -20,7 +21,11 @@ const flatAddress = computed(() => {
 
 <template>
   <div class="content">
-    <h2>数据搜索</h2>
+    <div class="icon">
+      <img :src="viteIcon" height="22" width="22" />
+      <h2>数据搜索</h2>
+    </div>
+
     <div class="search">
       <b>总计: {{ FlatData.length }}</b>
       <input v-model="searchText" placeholder="输入省/市/楼盘进行过滤" />
@@ -52,18 +57,29 @@ const flatAddress = computed(() => {
   height: 30px;
   width: 80%;
   margin: 5px;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 
 .item-list {
   width: 100%;
   height: 70vh;
   overflow-y: auto;
-  border: 1px solid rgb(200, 191, 190);
-  box-shadow: 2px 2px 8px 3px #dcd1d1;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 5px 1px #dcd1d1;
   padding: 10px 0px;
+  border-radius: 4px;
 }
 .item-list > div {
   margin: 3px;
+}
+.icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.icon > img {
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 767px) {
