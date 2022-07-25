@@ -18,14 +18,30 @@ async function exec(filePath: string, fetchEnd: string) {
   const fetch_url = join(FETCH_BASE, fetchEnd);
   try {
     const rt = await fetch(fetch_url);
-    writeFileSync(filePath, await rt.text(), { encoding: "utf-8" });
+    const flat_json = await rt.text();
+    console.log(
+      "fetch_url: %s ,data length: %s",
+      fetch_url,
+      JSON.parse(flat_json).length || 0
+    );
+    writeFileSync(filePath, flat_json, { encoding: "utf-8" });
   } catch (error) {
-    console.error("fetch_url: %s  ,error: %s", fetch_url, error);
+    console.error(
+      "fetch_url: %s  ,error: %s",
+      fetch_url,
+
+      error
+    );
   }
 }
 
 (async () => {
   await exec(PROPERTIES_FLAT, FLAT_JSON);
   await exec(PROPERTIES_TREE, TREE_JSON);
-  console.log("update successful on %s", new Date().toLocaleString());
+  console.log(
+    "update successful on %s",
+    new Date().toLocaleString("zh-CN", {
+      timeZone: "Asia/Shanghai",
+    })
+  );
 })();
