@@ -23,19 +23,22 @@ jobs:
       run:
         working-directory: '.' #运行路径
     steps:
-      - name: ( 1/4 ) setup environment for git
+      - name: ( 1/5 ) setup environment for git
         uses: actions/checkout@v3
 
-      - name: ( 2/4 ) cache node_modules  # ref: https://dev.to/mattpocockuk/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh
+      - name: ( 2/5 ) cache node_modules  # ref: https://dev.to/mattpocockuk/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh
         uses: actions/cache@v2
         with:
           path: './node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('./pnpm-lock.yaml') }}
 
-      - name: ( 3/4 ) build web site
-        run: cd src && npm i -g pnpm && pnpm i && pnpm fetchUpstream && pnpm build
+      - name: ( 3/5 ) update remote data
+        run: cd src && npm i -g pnpm && pnpm i && pnpm fetchUpstream
       
-      - name: ( 4/4 ) deploy web site
+      - name: ( 4/5 ) build web site
+        run:  pnpm build
+      
+      - name: ( 5/5 ) deploy web site
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.Token }}
