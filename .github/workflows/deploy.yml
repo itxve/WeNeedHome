@@ -16,6 +16,8 @@ jobs:
     runs-on: ["ubuntu-latest"]
     permissions:
       contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     strategy:
       matrix:
         node-version: [ 18.x ]
