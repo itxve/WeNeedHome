@@ -23,7 +23,7 @@ jobs:
         node-version: [ 18.x ]
     defaults:
       run:
-        working-directory: '.' #运行路径
+        working-directory: src #运行路径
     steps:
       - name: ( 1/5 ) setup environment for git
         uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('./pnpm-lock.yaml') }}
 
       - name: ( 3/5 ) update remote data
-        run: cd src && npm i -g pnpm && pnpm i && pnpm fetchUpstream
+        run: npm i -g pnpm && pnpm i && pnpm fetchUpstream
       
       - name: ( 4/5 ) build web site
         run:  pnpm build
