@@ -33,7 +33,10 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('./pnpm-lock.yaml') }}
 
       - name: ( 3/5 ) update remote data
-        run: cd src && npm i -g pnpm && pnpm i && pnpm fetchUpstream
+        - run: cd src
+        - run: npm i -g pnpm 
+        - run: pnpm i 
+        - run: pnpm fetchUpstream
       
       - name: ( 4/5 ) build web site
         run:  pnpm build
